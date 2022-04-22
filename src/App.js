@@ -31,9 +31,9 @@ export default function App() {
       recordingWebhookUrl: "https://www.videosdk.live/callback",
       recordingAWSDirPath: `/meeting-recordings/${meetingId}/`, // automatically save recording in this s3 path
 
-      brandingEnabled: true,
+      brandingEnabled: false,
       brandLogoURL: "https://picsum.photos/200",
-      brandName: "Awesome startup",
+      brandName: "Wow Meet",
 
       participantCanLeave: true, // if false, leave button won't be visible
 
