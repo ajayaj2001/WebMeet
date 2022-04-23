@@ -46,9 +46,10 @@ export default function App() {
       recordingWebhookUrl: "https://www.videosdk.live/callback",
       recordingAWSDirPath: `/meeting-recordings/${meetingId}/`, // automatically save recording in this s3 path
 
-      brandingEnabled: false,
-      // brandLogoURL: "https://picsum.photos/200",
-      // brandName: "Wow Meet",
+      brandingEnabled: true,
+      brandLogoURL: "https://www.linkpicture.com/q/Web-Meet-logos_white.png",
+      brandName: "Web Meet",
+      poweredBy: false,
 
       participantCanLeave: true, // if false, leave button won't be visible
 
@@ -83,6 +84,7 @@ export default function App() {
         allowed: true, // participant can pin any participant in meeting
         layout: "SPOTLIGHT", // meeting layout - GRID | SPOTLIGHT | SIDEBAR
       },
+      askJoin: true,
 
       leftScreen: {
         // visible when redirect on leave not provieded
