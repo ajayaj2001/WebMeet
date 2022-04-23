@@ -10,15 +10,14 @@ export default function App() {
         let randomPoz = Math.floor(Math.random() * charSet.length);
         code += charSet.substring(randomPoz, randomPoz + 1);
       }
+      window.location.replace(window.location.href + code);
       return code;
     } else {
-      // console.log(window.location.pathname.substring(1));
       return "";
     }
   };
 
   useEffect(() => {
-    // console.log(window.location.pathname === "/", window.location.pathname);
     const apiKey = process.env.REACT_APP_VIDEOSDK_API_KEY;
     const meetingId = meetingCodeGenerator();
     const name = "User";
@@ -31,8 +30,8 @@ export default function App() {
       containerId: null,
       redirectOnLeave: "https://webmeet.vercel.app/",
 
-      micEnabled: true,
-      webcamEnabled: true,
+      micEnabled: false,
+      webcamEnabled: false,
       participantCanToggleSelfWebcam: true,
       participantCanToggleSelfMic: true,
 
