@@ -1,9 +1,3 @@
-- Built for serverless video calling experience.
-- Scale it upto 5,000 participants with low code.
-- 10,000 minutes free on monthly basis.
-- Inbuilt video and audio quality optimization.
-- Inbuilt chat poll, whiteboard, Q and A support.
-
 ## Features
 
 - [x] Completely Low code and serverless.

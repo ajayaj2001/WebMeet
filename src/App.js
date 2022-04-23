@@ -2,10 +2,26 @@ import React, { useEffect } from "react";
 import { VideoSDKMeeting } from "@videosdk.live/rtc-js-prebuilt";
 
 export default function App() {
+  const meetingCodeGenerator = () => {
+    if (window.location.pathname === "/") {
+      const charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let code = "";
+      for (let i = 0; i < 12; i++) {
+        let randomPoz = Math.floor(Math.random() * charSet.length);
+        code += charSet.substring(randomPoz, randomPoz + 1);
+      }
+      return code;
+    } else {
+      // console.log(window.location.pathname.substring(1));
+      return "";
+    }
+  };
+
   useEffect(() => {
+    // console.log(window.location.pathname === "/", window.location.pathname);
     const apiKey = process.env.REACT_APP_VIDEOSDK_API_KEY;
-    const meetingId = "milkyway";
-    const name = "Demo User";
+    const meetingId = meetingCodeGenerator();
+    const name = "User";
 
     const config = {
       name: name,
@@ -13,7 +29,7 @@ export default function App() {
       apiKey: apiKey,
 
       containerId: null,
-      redirectOnLeave: "https://www.videosdk.live/",
+      redirectOnLeave: "https://webmeet.vercel.app/",
 
       micEnabled: true,
       webcamEnabled: true,
@@ -32,8 +48,8 @@ export default function App() {
       recordingAWSDirPath: `/meeting-recordings/${meetingId}/`, // automatically save recording in this s3 path
 
       brandingEnabled: false,
-      brandLogoURL: "https://picsum.photos/200",
-      brandName: "Wow Meet",
+      // brandLogoURL: "https://picsum.photos/200",
+      // brandName: "Wow Meet",
 
       participantCanLeave: true, // if false, leave button won't be visible
 
@@ -60,8 +76,8 @@ export default function App() {
 
       joinScreen: {
         visible: true, // Show the join screen ?
-        title: "Daily scrum", // Meeting title
-        meetingUrl: window.location.href, // Meeting joining url
+        title: "Share Meeting Code", // Meeting title
+        meetingUrl: window.location.href + meetingId, // Meeting joining url
       },
 
       pin: {
@@ -73,8 +89,8 @@ export default function App() {
         // visible when redirect on leave not provieded
         actionButton: {
           // optional action button
-          label: "Video SDK Live", // action button label
-          href: "https://videosdk.live/", // action button href
+          label: "WebMeet", // action button label
+          href: "https://webmeet.vercel.app/", // action button href
         },
       },
     };
