@@ -69,9 +69,9 @@ export default function App() {
         toggleParticipantWebcam: true, // Can toggle other participant's webcam
         removeParticipant: true, // Remove other participant from meeting
         endMeeting: true, // End meeting for all participant
-        drawOnWhiteboard: true, // Can Draw on whiteboard
-        toggleWhiteboard: true, // Can toggle whiteboard
-        toggleRecording: true, // Can toggle recording
+        drawOnWhiteboard: false, // Can Draw on whiteboard
+        toggleWhiteboard: false, // Can toggle whiteboard
+        toggleRecording: false, // Can toggle recording
       },
 
       joinScreen: {
@@ -84,7 +84,6 @@ export default function App() {
         allowed: true, // participant can pin any participant in meeting
         layout: "SPOTLIGHT", // meeting layout - GRID | SPOTLIGHT | SIDEBAR
       },
-      askJoin: true,
 
       leftScreen: {
         // visible when redirect on leave not provieded
