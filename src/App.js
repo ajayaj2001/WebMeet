@@ -69,8 +69,8 @@ export default function App() {
         toggleParticipantWebcam: true, // Can toggle other participant's webcam
         removeParticipant: true, // Remove other participant from meeting
         endMeeting: true, // End meeting for all participant
-        drawOnWhiteboard: false, // Can Draw on whiteboard
-        toggleWhiteboard: false, // Can toggle whiteboard
+        drawOnWhiteboard: true, // Can Draw on whiteboard
+        toggleWhiteboard: true, // Can toggle whiteboard
         toggleRecording: false, // Can toggle recording
       },
 
