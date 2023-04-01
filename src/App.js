@@ -2,33 +2,20 @@ import React, { useEffect } from "react";
 import { VideoSDKMeeting } from "@videosdk.live/rtc-js-prebuilt";
 
 export default function App() {
-  const meetingCodeGenerator = () => {
-    if (window.location.pathname === "/") {
-      const charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-      let code = "";
-      for (let i = 0; i < 12; i++) {
-        let randomPoz = Math.floor(Math.random() * charSet.length);
-        code += charSet.substring(randomPoz, randomPoz + 1);
-      }
-      window.location.replace(window.location.href + code);
-      return code;
-    } else {
-      return "";
-    }
-  };
-
+  const searchParams = new URLSearchParams(document.location.search);
   useEffect(() => {
     const apiKey = process.env.REACT_APP_VIDEOSDK_API_KEY;
-    const meetingId = meetingCodeGenerator();
-    const name = "User";
-
+    const redirectUrl = window.location.href.split("?")[0];
+    const meetingId =
+      searchParams.get("meeting-id") || Math.random().toString(36).slice(2, 7);
+    const name = searchParams.get("name") || "User";
     const config = {
       name: name,
       meetingId: meetingId,
       apiKey: apiKey,
 
       containerId: null,
-      redirectOnLeave: "https://webmeet.vercel.app/",
+      redirectOnLeave: redirectUrl,
 
       micEnabled: false,
       webcamEnabled: false,
@@ -48,7 +35,7 @@ export default function App() {
 
       brandingEnabled: true,
       brandLogoURL: "https://www.linkpicture.com/q/Web-Meet-logos_white.png",
-      brandName: "Web Meet",
+      brandName: searchParams.get("name") || "Web Meet",
       poweredBy: false,
 
       participantCanLeave: true, // if false, leave button won't be visible
@@ -77,7 +64,7 @@ export default function App() {
       joinScreen: {
         visible: true, // Show the join screen ?
         title: "Share Meeting Code", // Meeting title
-        meetingUrl: window.location.href + meetingId, // Meeting joining url
+        meetingUrl: redirectUrl + `?meeting-id=${meetingId}`, // Meeting joining url
       },
 
       pin: {
@@ -89,8 +76,8 @@ export default function App() {
         // visible when redirect on leave not provieded
         actionButton: {
           // optional action button
-          label: "WebMeet", // action button label
-          href: "https://webmeet.vercel.app/", // action button href
+          label: searchParams.get("app-name") || "WebMeet", // action button label
+          href: redirectUrl, // action button href
         },
       },
     };
